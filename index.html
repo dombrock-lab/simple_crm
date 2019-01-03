@@ -1,0 +1,41 @@
+
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+
+<a href="new" id="new_client_button">+</a>
+<div id="show-clients">
+
+</div>
+
+<script>
+$.get( "api/clients", function( data ) {
+    let output = "";
+    for(index in data){
+        let client = data[index];
+        output += "UCID#"+client.ID;
+        output += "<br>";
+        output += "Company: "+client.company;
+        output += "<br>";
+        output += "Name: "+client.name;
+        output += "<br>";
+        output += "Phone: "+client.phone;
+        output += "<br>";
+        output += "Email: "+client.email;
+        output += "<br>";
+        output += "<button onclick='delete_client("+client.ID+")'>DELETE</button>";
+        output += "<button onclick='edit_client("+client.ID+")'>EDIT</button>";
+        output += "<br>";
+        output += "<hr>";
+    }
+    $("#show-clients").html( output );
+    //alert( "Load was performed." );
+});
+function delete_client(id){
+    alert("Deleting "+id);
+}
+function edit_client(id){
+    alert("Editing "+id);
+}
+</script>
